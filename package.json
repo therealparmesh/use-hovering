@@ -1,0 +1,34 @@
+{
+  "name": "use-hovering",
+  "version": "0.0.0",
+  "description": "Simple, accessible React hook for tracking hover state.",
+  "repository": "github:therealparmesh/use-hovering",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.js",
+  "scripts": {
+    "build": "microbundle --format cjs,es",
+    "prepublishOnly": "standard-version && npm run-script build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "devDependencies": {
+    "husky": "^4.0.10",
+    "microbundle": "^0.11.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.12.0",
+    "standard-version": "^7.0.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
+}
