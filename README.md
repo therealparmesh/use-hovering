@@ -1,4 +1,4 @@
-# use-hovering
+# use-hovering 🧞
 
 > Simple, accessible React hook for tracking hover state.
 
@@ -17,7 +17,7 @@ yarn add use-hovering
 ```jsx
 import { useHovering } from 'use-hovering';
 
-const Example = () => {
+export const Example = () => {
   const [hovering, bind] = useHovering();
 
   return (
