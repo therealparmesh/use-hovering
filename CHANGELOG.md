@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/therealparmesh/use-hovering/compare/v0.0.3...v0.0.4) (2020-01-19)
+
+### Bug Fixes
+
+- account for mousemove ([f47a903](https://github.com/therealparmesh/use-hovering/commit/f47a903723dc503c829ecf724a609d731f8f455c))
+
 ### [0.0.3](https://github.com/therealparmesh/use-hovering/compare/v0.0.2...v0.0.3) (2020-01-19)
 
 ### Bug Fixes
