@@ -4,7 +4,7 @@ export const useHovering = () => {
   const [hovering, setHovering] = React.useState(false);
 
   const bind = React.useMemo(
-    {
+    () => ({
       onMouseEnter: () => {
         setHovering(true);
       },
@@ -18,7 +18,7 @@ export const useHovering = () => {
         setHovering(false);
       },
       tabIndex: 0,
-    },
+    }),
     [],
   );
 
