@@ -5,10 +5,18 @@ export const useHovering = () => {
 
   const bind = React.useMemo(
     {
-      onMouseEnter: () => setHovering(true),
-      onMouseLeave: () => setHovering(false),
-      onFocus: () => setHovering(true),
-      onBlur: () => setHovering(false),
+      onMouseEnter: () => {
+        setHovering(true);
+      },
+      onMouseLeave: () => {
+        setHovering(false);
+      },
+      onFocus: () => {
+        setHovering(true);
+      },
+      onBlur: () => {
+        setHovering(false);
+      },
       tabIndex: 0,
     },
     [],
