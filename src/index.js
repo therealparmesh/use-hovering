@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const useHovering = () => {
-  const ref = React.useRef();
+  const ref = React.useRef(null);
   const [hovering, setHovering] = React.useState(false);
 
   const bind = React.useMemo(
@@ -29,6 +29,10 @@ export const useHovering = () => {
 
   React.useEffect(() => {
     const listener = e => {
+      if (!ref.current) {
+        return;
+      }
+
       const minX = ref.current.offsetLeft;
       const maxX = minX + ref.current.offsetWidth;
       const minY = ref.current.offsetTop;
