@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/therealparmesh/use-hovering/compare/v0.0.4...v0.0.5) (2020-01-19)
+
+### Bug Fixes
+
+- check if ref exists ([7772017](https://github.com/therealparmesh/use-hovering/commit/7772017349225f77d19f88140ef82338091708ac))
+
 ### [0.0.4](https://github.com/therealparmesh/use-hovering/compare/v0.0.3...v0.0.4) (2020-01-19)
 
 ### Bug Fixes
