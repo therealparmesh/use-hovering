@@ -1,30 +1,49 @@
 import React from 'react';
 
-export const useHovering = () => {
+export const useHovering = ({ enterDelay, exitDelay } = {}) => {
   const ref = React.useRef(null);
+  const op = React.useRef(null);
   const [hovering, setHovering] = React.useState(false);
+
+  const changeHoverState = React.useCallback(
+    value => {
+      clearTimeout(op.current);
+
+      if ((value && enterDelay) || (!value && exitDelay)) {
+        op.current = setTimeout(
+          () => {
+            setHovering(value);
+          },
+          value ? enterDelay : exitDelay,
+        );
+      } else {
+        setHovering(value);
+      }
+    },
+    [enterDelay, exitDelay],
+  );
 
   const bind = React.useMemo(
     () => ({
       ref,
+      tabIndex: 0,
       onMouseEnter: () => {
-        setHovering(true);
+        changeHoverState(true);
       },
       onMouseLeave: () => {
-        setHovering(false);
+        changeHoverState(false);
       },
       onMouseMove: () => {
-        setHovering(true);
+        changeHoverState(true);
       },
       onFocus: () => {
-        setHovering(true);
+        changeHoverState(true);
       },
       onBlur: () => {
-        setHovering(false);
+        changeHoverState(false);
       },
-      tabIndex: 0,
     }),
-    [],
+    [changeHoverState],
   );
 
   React.useEffect(() => {
@@ -46,7 +65,7 @@ export const useHovering = () => {
           e.clientY <= maxY
         )
       ) {
-        setHovering(false);
+        changeHoverState(false);
       }
     };
 
@@ -55,7 +74,7 @@ export const useHovering = () => {
     return () => {
       document.removeEventListener('mousemove', listener);
     };
-  }, []);
+  }, [changeHoverState]);
 
   return [hovering, bind];
 };
