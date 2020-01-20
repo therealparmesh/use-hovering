@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/therealparmesh/use-hovering/compare/v0.0.5...v0.0.6) (2020-01-20)
+
+### Features
+
+- add delay props ([4e6ea35](https://github.com/therealparmesh/use-hovering/commit/4e6ea35d69f2f418d67f68ac4986b7bd8c7ec5ba))
+
 ### [0.0.5](https://github.com/therealparmesh/use-hovering/compare/v0.0.4...v0.0.5) (2020-01-19)
 
 ### Bug Fixes

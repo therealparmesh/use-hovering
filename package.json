@@ -1,6 +1,6 @@
 {
   "name": "use-hovering",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple, accessible React hook for tracking hover state.",
   "repository": "github:therealparmesh/use-hovering",
   "license": "MIT",
