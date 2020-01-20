@@ -1,4 +1,6 @@
-declare function useHovering(args: {
+import * as React from 'react';
+
+export function useHovering(args: {
   enterDelay?: number;
   exitDelay?: number;
 }): [
@@ -13,5 +15,3 @@ declare function useHovering(args: {
     onBlur: React.FocusEventHandler<any>;
   },
 ];
-
-export = useHovering;
