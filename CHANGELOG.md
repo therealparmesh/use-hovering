@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/therealparmesh/use-hovering/compare/v0.0.8...v0.0.9) (2020-01-21)
+
+### Bug Fixes
+
+- update mousemove listener to not check XY ([4710b39](https://github.com/therealparmesh/use-hovering/commit/4710b39328239846cd0f188b1ffa02117cd8c0d6))
+
 ### [0.0.8](https://github.com/therealparmesh/use-hovering/compare/v0.0.7...v0.0.8) (2020-01-20)
 
 ### Bug Fixes
