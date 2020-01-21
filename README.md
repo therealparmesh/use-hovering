@@ -21,12 +21,7 @@ import { useHovering } from 'use-hovering';
 export const Example = () => {
   const [hovering, bind] = useHovering();
 
-  return (
-    <>
-      <div {...bind}>Hover over me!</div>
-      {hovering && <div>Now you see me!</div>}
-    </>
-  );
+  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
 };
 ```
 
@@ -38,11 +33,6 @@ import { useHovering } from 'use-hovering';
 export const Example = () => {
   const [hovering, bind] = useHovering({ enterDelay: 250, exitDelay: 250 });
 
-  return (
-    <>
-      <div {...bind}>Hover over me!</div>
-      {hovering && <div>Now you see me!</div>}
-    </>
-  );
+  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
 };
 ```

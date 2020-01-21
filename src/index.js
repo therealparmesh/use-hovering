@@ -48,23 +48,7 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
 
   React.useEffect(() => {
     const listener = e => {
-      if (!ref.current) {
-        return;
-      }
-
-      const minX = ref.current.offsetLeft;
-      const maxX = minX + ref.current.offsetWidth;
-      const minY = ref.current.offsetTop;
-      const maxY = minY + ref.current.offsetHeight;
-
-      if (
-        !(
-          e.clientX >= minX &&
-          e.clientX <= maxX &&
-          e.clientY >= minY &&
-          e.clientY <= maxY
-        )
-      ) {
+      if (ref.current && !ref.current.contains(e.target)) {
         changeHoverState(false);
       }
     };
