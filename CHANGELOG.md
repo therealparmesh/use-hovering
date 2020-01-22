@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/therealparmesh/use-hovering/compare/v0.1.1...v0.1.2) (2020-01-22)
+
+### Bug Fixes
+
+- properly memo event listener props ([7ab7b68](https://github.com/therealparmesh/use-hovering/commit/7ab7b68491a2a25bb6df6fca901c40217098e9d0))
+
 ### [0.1.1](https://github.com/therealparmesh/use-hovering/compare/v0.1.0...v0.1.1) (2020-01-22)
 
 ## [0.1.0](https://github.com/therealparmesh/use-hovering/compare/v0.0.9...v0.1.0) (2020-01-22)
