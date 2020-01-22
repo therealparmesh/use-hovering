@@ -4,6 +4,7 @@
   "description": "Simple, accessible React hook for tracking hover state.",
   "repository": "github:therealparmesh/use-hovering",
   "license": "MIT",
+  "author": "Parmesh Krishen",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "source": "src/index.js",
