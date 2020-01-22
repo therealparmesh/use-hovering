@@ -15,4 +15,4 @@ interface TargetProps {
 
 export const useHovering: (
   args: Props,
-) => [boolean, (args: TargetProps) => TargetProps];
+) => [boolean, (args: Partial<TargetProps>) => TargetProps];
