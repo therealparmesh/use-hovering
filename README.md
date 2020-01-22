@@ -19,9 +19,11 @@ npm install use-hovering
 import { useHovering } from 'use-hovering';
 
 export const Example = () => {
-  const [hovering, bind] = useHovering();
+  const [hovering, getTargetProps] = useHovering();
 
-  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return (
+    <div {...getTargetProps()}>Hover over me!{hovering && ' Hovering!'}</div>
+  );
 };
 ```
 
@@ -31,8 +33,13 @@ export const Example = () => {
 import { useHovering } from 'use-hovering';
 
 export const Example = () => {
-  const [hovering, bind] = useHovering({ enterDelay: 250, exitDelay: 250 });
+  const [hovering, getTargetProps] = useHovering({
+    enterDelay: 250,
+    exitDelay: 250,
+  });
 
-  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return (
+    <div {...getTargetProps()}>Hover over me!{hovering && ' Hovering!'}</div>
+  );
 };
 ```

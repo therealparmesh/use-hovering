@@ -1,4 +1,17 @@
-import * as React from 'react';
+import React from 'react';
+import memoizeOne from 'memoize-one';
+
+const mergeRefs = memoizeOne((...refs) => {
+  return value => {
+    refs.forEach(resolvableRef => {
+      if (typeof resolvableRef === 'function') {
+        resolvableRef(value);
+      } else if (resolvableRef) {
+        resolvableRef.current = value;
+      }
+    });
+  };
+});
 
 export const useHovering = ({ enterDelay, exitDelay } = {}) => {
   const ref = React.useRef(null);
@@ -23,27 +36,40 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     [enterDelay, exitDelay],
   );
 
-  const bind = React.useMemo(
-    () => ({
-      ref,
-      tabIndex: 0,
-      onMouseEnter: () => {
-        changeHoverState(true);
-      },
-      onMouseLeave: () => {
-        changeHoverState(false);
-      },
-      onMouseMove: () => {
-        changeHoverState(true);
-      },
-      onFocus: () => {
-        changeHoverState(true);
-      },
-      onBlur: () => {
-        changeHoverState(false);
-      },
+  const changeHoverStateAndCallIf = React.useCallback(
+    memoizeOne((value, callback) => {
+      return e => {
+        changeHoverState(value);
+
+        if (callback) {
+          return callback(e);
+        }
+      };
     }),
     [changeHoverState],
+  );
+
+  const getTargetProps = React.useCallback(
+    ({
+      ref: resolvableRef,
+      tabIndex,
+      onMouseEnter,
+      onMouseLeave,
+      onMouseMove,
+      onFocus,
+      onBlur,
+    } = {}) => {
+      return {
+        ref: resolvableRef ? mergeRefs(ref, resolvableRef) : ref,
+        tabIndex: tabIndex || 0,
+        onMouseEnter: changeHoverStateAndCallIf(true, onMouseEnter),
+        onMouseLeave: changeHoverStateAndCallIf(false, onMouseLeave),
+        onMouseMove: changeHoverStateAndCallIf(true, onMouseMove),
+        onFocus: changeHoverStateAndCallIf(true, onFocus),
+        onBlur: changeHoverStateAndCallIf(false, onBlur),
+      };
+    },
+    [changeHoverStateAndCallIf],
   );
 
   React.useEffect(() => {
@@ -60,5 +86,5 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     };
   }, [changeHoverState]);
 
-  return [hovering, bind];
+  return [hovering, getTargetProps];
 };
