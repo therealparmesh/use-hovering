@@ -36,28 +36,6 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     [enterDelay, exitDelay],
   );
 
-  const callbacks = React.useMemo(() => {
-    const makeMemo = value => {
-      return memoizeOne(callback => {
-        return e => {
-          changeHoverState(value);
-
-          if (callback) {
-            return callback(e);
-          }
-        };
-      });
-    };
-
-    return {
-      onMouseEnter: makeMemo(true),
-      onMouseLeave: makeMemo(false),
-      onMouseMove: makeMemo(true),
-      onFocus: makeMemo(true),
-      onBlur: makeMemo(false),
-    };
-  }, [changeHoverState]);
-
   const getTargetProps = React.useCallback(
     ({
       ref: resolvableRef,
@@ -68,17 +46,29 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
       onFocus,
       onBlur,
     } = {}) => {
+      const makeMemo = value => {
+        return memoizeOne(callback => {
+          return e => {
+            changeHoverState(value);
+
+            if (callback) {
+              return callback(e);
+            }
+          };
+        });
+      };
+
       return {
         ref: resolvableRef ? mergeRefs(ref, resolvableRef) : ref,
         tabIndex: tabIndex || 0,
-        onMouseEnter: callbacks.onMouseEnter(onMouseEnter),
-        onMouseLeave: callbacks.onMouseLeave(onMouseLeave),
-        onMouseMove: callbacks.onMouseMove(onMouseMove),
-        onFocus: callbacks.onFocus(onFocus),
-        onBlur: callbacks.onBlur(onBlur),
+        onMouseEnter: makeMemo(true)(onMouseEnter),
+        onMouseLeave: makeMemo(false)(onMouseLeave),
+        onMouseMove: makeMemo(true)(onMouseMove),
+        onFocus: makeMemo(true)(onFocus),
+        onBlur: makeMemo(false)(onBlur),
       };
     },
-    [callbacks],
+    [changeHoverState],
   );
 
   React.useEffect(() => {
