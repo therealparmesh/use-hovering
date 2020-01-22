@@ -36,8 +36,20 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     [enterDelay, exitDelay],
   );
 
-  const getTargetProps = React.useCallback(
-    ({
+  const getTargetProps = React.useMemo(() => {
+    const makeMemo = value => {
+      return memoizeOne(callback => {
+        return e => {
+          changeHoverState(value);
+
+          if (callback) {
+            return callback(e);
+          }
+        };
+      });
+    };
+
+    return ({
       ref: resolvableRef,
       tabIndex,
       onMouseEnter,
@@ -46,18 +58,6 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
       onFocus,
       onBlur,
     } = {}) => {
-      const makeMemo = value => {
-        return memoizeOne(callback => {
-          return e => {
-            changeHoverState(value);
-
-            if (callback) {
-              return callback(e);
-            }
-          };
-        });
-      };
-
       return {
         ref: resolvableRef ? mergeRefs(ref, resolvableRef) : ref,
         tabIndex: tabIndex || 0,
@@ -67,9 +67,8 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
         onFocus: makeMemo(true)(onFocus),
         onBlur: makeMemo(false)(onBlur),
       };
-    },
-    [changeHoverState],
-  );
+    };
+  }, [changeHoverState]);
 
   React.useEffect(() => {
     const listener = e => {
