@@ -9,9 +9,15 @@
   "module": "dist/index.mjs",
   "source": "src/index.js",
   "types": "types.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "types.d.ts"
+  ],
   "scripts": {
     "build": "microbundle --format cjs,es",
-    "prepublishOnly": "standard-version && npm run-script build"
+    "prepublishOnly": "npm run-script build",
+    "version": "standard-version"
   },
   "husky": {
     "hooks": {
@@ -23,7 +29,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "memoize-one": "5.1.1"
+    "memoize-one": "^5.1.1"
   },
   "devDependencies": {
     "husky": "^4.0.10",
@@ -34,6 +40,6 @@
     "standard-version": "^7.0.1"
   },
   "peerDependencies": {
-    "react": ">=16.8.0"
+    "react": "^16.8.0"
   }
 }
