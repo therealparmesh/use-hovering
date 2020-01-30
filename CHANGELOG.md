@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/therealparmesh/use-hovering/compare/v0.1.5...v0.2.0) (2020-01-30)
+
+### ⚠ BREAKING CHANGES
+
+- The second item in the returned array is now an object of props.
+
+### Features
+
+- update API to return object of props ([189dddf](https://github.com/therealparmesh/use-hovering/commit/189dddffa921f23fe224f1173b714a8f109e2e83))
+
 ### [0.1.5](https://github.com/therealparmesh/use-hovering/compare/v0.1.4...v0.1.5) (2020-01-29)
 
 ### [0.1.4](https://github.com/therealparmesh/use-hovering/compare/v0.1.3...v0.1.4) (2020-01-22)
