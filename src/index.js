@@ -18,7 +18,7 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     };
   }, [ref]);
 
-  const changeHoveringState = React.useCallback(
+  const hoverOp = React.useCallback(
     value => {
       clearTimeout(op.current);
 
@@ -42,16 +42,16 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     }
 
     const on = () => {
-      changeHoveringState(true);
+      hoverOp(true);
     };
 
     const off = () => {
-      changeHoveringState(false);
+      hoverOp(false);
     };
 
     const outsideOff = e => {
       if (node && !node.contains(e.target)) {
-        changeHoveringState(false);
+        hoverOp(false);
       }
     };
 
@@ -74,7 +74,7 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
       node.removeEventListener('blur', off);
       document.removeEventListener('mousemove', outsideOff);
     };
-  }, [node, changeHoveringState]);
+  }, [node, hoverOp]);
 
   return [hovering, bind];
 };
