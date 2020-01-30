@@ -5,15 +5,15 @@
   "repository": "github:therealparmesh/use-hovering",
   "license": "MIT",
   "author": "Parmesh Krishen",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "source": "src/index.js",
-  "types": "types.d.ts",
   "files": [
     "src",
     "dist",
     "types.d.ts"
   ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "source": "src/index.js",
+  "types": "types.d.ts",
   "scripts": {
     "build": "microbundle --format cjs,es",
     "prepublishOnly": "npm run-script build",
@@ -27,9 +27,6 @@
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
-  },
-  "dependencies": {
-    "memoize-one": "^5.1.1"
   },
   "devDependencies": {
     "husky": "^4.0.10",

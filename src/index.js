@@ -1,24 +1,24 @@
 import React from 'react';
-import memoizeOne from 'memoize-one';
-
-const mergeRefs = memoizeOne((...refs) => {
-  return value => {
-    refs.forEach(resolvableRef => {
-      if (typeof resolvableRef === 'function') {
-        resolvableRef(value);
-      } else if (resolvableRef) {
-        resolvableRef.current = value;
-      }
-    });
-  };
-});
 
 export const useHovering = ({ enterDelay, exitDelay } = {}) => {
-  const ref = React.useRef(null);
   const op = React.useRef(null);
+  const [node, setNode] = React.useState(null);
   const [hovering, setHovering] = React.useState(false);
 
-  const changeHoverState = React.useCallback(
+  const ref = React.useCallback(n => {
+    if (n) {
+      setNode(n);
+    }
+  }, []);
+
+  const bind = React.useMemo(() => {
+    return {
+      ref,
+      tabIndex: 0,
+    };
+  }, [ref]);
+
+  const changeHoveringState = React.useCallback(
     value => {
       clearTimeout(op.current);
 
@@ -36,53 +36,45 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     [enterDelay, exitDelay],
   );
 
-  const getTargetProps = React.useMemo(() => {
-    const makeMemo = value => {
-      return memoizeOne(callback => {
-        return e => {
-          changeHoverState(value);
-
-          if (callback) {
-            return callback(e);
-          }
-        };
-      });
-    };
-
-    return ({
-      ref: resolvableRef,
-      tabIndex,
-      onMouseEnter,
-      onMouseLeave,
-      onMouseMove,
-      onFocus,
-      onBlur,
-    } = {}) => {
-      return {
-        ref: resolvableRef ? mergeRefs(ref, resolvableRef) : ref,
-        tabIndex: tabIndex || 0,
-        onMouseEnter: makeMemo(true)(onMouseEnter),
-        onMouseLeave: makeMemo(false)(onMouseLeave),
-        onMouseMove: makeMemo(true)(onMouseMove),
-        onFocus: makeMemo(true)(onFocus),
-        onBlur: makeMemo(false)(onBlur),
-      };
-    };
-  }, [changeHoverState]);
-
   React.useEffect(() => {
-    const listener = e => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        changeHoverState(false);
+    if (!node) {
+      return;
+    }
+
+    const on = () => {
+      changeHoveringState(true);
+    };
+
+    const off = () => {
+      changeHoveringState(false);
+    };
+
+    const outsideOff = e => {
+      if (node && !node.contains(e.target)) {
+        changeHoveringState(false);
       }
     };
 
-    document.addEventListener('mousemove', listener);
+    node.addEventListener('mouseenter', on);
+    node.addEventListener('mouseleave', off);
+    node.addEventListener('mousemove', on);
+    node.addEventListener('focus', on);
+    node.addEventListener('blur', off);
+    document.addEventListener('mousemove', outsideOff);
 
     return () => {
-      document.removeEventListener('mousemove', listener);
-    };
-  }, [changeHoverState]);
+      if (!node) {
+        return;
+      }
 
-  return [hovering, getTargetProps];
+      node.removeEventListener('mouseenter', on);
+      node.removeEventListener('mouseleave', off);
+      node.removeEventListener('mousemove', on);
+      node.removeEventListener('focus', on);
+      node.removeEventListener('blur', off);
+      document.removeEventListener('mousemove', outsideOff);
+    };
+  }, [node, changeHoveringState]);
+
+  return [hovering, bind];
 };
