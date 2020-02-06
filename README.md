@@ -19,9 +19,10 @@ npm install use-hovering
 import { useHovering } from 'use-hovering';
 
 export const Example = () => {
-  const [hovering, bind] = useHovering();
+  const ref = React.useRef();
+  const hovering = useHovering({ ref });
 
-  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return <div ref={ref}>Hover over me!{hovering && ' Hovering!'}</div>;
 };
 ```
 
@@ -31,11 +32,13 @@ export const Example = () => {
 import { useHovering } from 'use-hovering';
 
 export const Example = () => {
-  const [hovering, bind] = useHovering({
+  const ref = React.useRef();
+  const hovering = useHovering({
+    ref,
     enterDelay: 250,
     exitDelay: 250,
   });
 
-  return <div {...bind}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return <div ref={ref}>Hover over me!{hovering && ' Hovering!'}</div>;
 };
 ```

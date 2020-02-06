@@ -1,11 +1,5 @@
-interface Props {
+export const useHovering: (args: {
+  ref: React.MutableRefObject<any>;
   enterDelay?: number;
   exitDelay?: number;
-}
-
-interface Bind {
-  ref: React.RefObject<any>;
-  tabIndex: React.HTMLAttributes<any>['tabIndex'];
-}
-
-export const useHovering: (args: Props) => [boolean, Bind];
+}) => boolean;

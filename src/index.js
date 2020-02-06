@@ -1,22 +1,8 @@
 import React from 'react';
 
-export const useHovering = ({ enterDelay, exitDelay } = {}) => {
+export const useHovering = ({ ref, enterDelay = 0, exitDelay = 0 }) => {
   const op = React.useRef(null);
-  const [node, setNode] = React.useState(null);
   const [hovering, setHovering] = React.useState(false);
-
-  const ref = React.useCallback(n => {
-    if (n) {
-      setNode(n);
-    }
-  }, []);
-
-  const bind = React.useMemo(() => {
-    return {
-      ref,
-      tabIndex: 0,
-    };
-  }, [ref]);
 
   const hoverOp = React.useCallback(
     value => {
@@ -37,9 +23,11 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
   );
 
   React.useEffect(() => {
-    if (!node) {
+    if (!ref.current) {
       return;
     }
+
+    const node = ref.current;
 
     const on = () => {
       hoverOp(true);
@@ -63,10 +51,6 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
     document.addEventListener('mousemove', outsideOff);
 
     return () => {
-      if (!node) {
-        return;
-      }
-
       node.removeEventListener('mouseenter', on);
       node.removeEventListener('mouseleave', off);
       node.removeEventListener('mousemove', on);
@@ -74,7 +58,7 @@ export const useHovering = ({ enterDelay, exitDelay } = {}) => {
       node.removeEventListener('blur', off);
       document.removeEventListener('mousemove', outsideOff);
     };
-  }, [node, hoverOp]);
+  }, [hoverOp]);
 
-  return [hovering, bind];
+  return hovering;
 };
