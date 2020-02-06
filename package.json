@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "build": "microbundle",
-    "prepublishOnly": "npm run-script build",
+    "prepublishOnly": "npm run build",
     "version": "standard-version"
   },
   "husky": {
