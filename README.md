@@ -22,7 +22,11 @@ export const Example = () => {
   const ref = React.useRef();
   const hovering = useHovering({ ref });
 
-  return <div ref={ref}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return (
+    <div ref={ref} tabIndex={0}>
+      Hover over me!{hovering && ' Hovering!'}
+    </div>
+  );
 };
 ```
 
@@ -39,6 +43,10 @@ export const Example = () => {
     exitDelay: 250,
   });
 
-  return <div ref={ref}>Hover over me!{hovering && ' Hovering!'}</div>;
+  return (
+    <div ref={ref} tabIndex={0}>
+      Hover over me!{hovering && ' Hovering!'}
+    </div>
+  );
 };
 ```
