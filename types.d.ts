@@ -1,5 +1,7 @@
-export const useHovering: (args: {
-  ref: React.MutableRefObject<any>;
-  enterDelay?: number;
-  exitDelay?: number;
-}) => boolean;
+export const useHovering: (
+  ref: React.MutableRefObject<any>,
+  args?: {
+    enterDelay?: number;
+    exitDelay?: number;
+  },
+) => boolean;

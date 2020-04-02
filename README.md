@@ -20,7 +20,7 @@ import { useHovering } from 'use-hovering';
 
 export const Example = () => {
   const ref = React.useRef();
-  const hovering = useHovering({ ref });
+  const hovering = useHovering(ref);
 
   return (
     <div ref={ref} tabIndex={0}>
@@ -37,8 +37,7 @@ import { useHovering } from 'use-hovering';
 
 export const Example = () => {
   const ref = React.useRef();
-  const hovering = useHovering({
-    ref,
+  const hovering = useHovering(ref, {
     enterDelay: 250,
     exitDelay: 250,
   });

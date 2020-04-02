@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const useHovering = ({ ref, enterDelay = 0, exitDelay = 0 }) => {
+export const useHovering = (ref, { enterDelay = 0, exitDelay = 0 } = {}) => {
   const op = React.useRef(null);
   const [hovering, setHovering] = React.useState(false);
 
   const hoverOp = React.useCallback(
-    value => {
+    (value) => {
       clearTimeout(op.current);
 
       if ((value && enterDelay) || (!value && exitDelay)) {
@@ -37,7 +37,7 @@ export const useHovering = ({ ref, enterDelay = 0, exitDelay = 0 }) => {
       hoverOp(false);
     };
 
-    const outsideOff = e => {
+    const outsideOff = (e) => {
       if (node && !node.contains(e.target)) {
         hoverOp(false);
       }
