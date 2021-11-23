@@ -5,13 +5,10 @@
   "repository": "github:therealparmesh/use-hovering",
   "license": "MIT",
   "author": "Parmesh Krishen",
-  "main": "dist/index.js",
-  "umd:main": "dist/index.umd.js",
-  "module": "dist/index.module.js",
-  "source": "src/index.js",
+  "main": "dist",
   "types": "types.d.ts",
   "scripts": {
-    "build": "microbundle",
+    "build": "esbuild src/*.js --outdir=dist --minify --sourcemap",
     "precommit": "pretty-quick --staged",
     "prepare": "pro-commit",
     "prepublishOnly": "npm run build",
@@ -23,7 +20,7 @@
     "trailingComma": "all"
   },
   "devDependencies": {
-    "microbundle": "^0.14.2",
+    "esbuild": "^0.13.15",
     "prettier": "^2.0.2",
     "pretty-quick": "^3.0.0",
     "pro-commit": "^1.2.1",

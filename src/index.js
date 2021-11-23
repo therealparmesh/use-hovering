@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const useHovering = (ref, { enterDelay = 0, exitDelay = 0 } = {}) => {
+export function useHovering(ref, { enterDelay = 0, exitDelay = 0 } = {}) {
   const op = React.useRef(null);
   const [hovering, setHovering] = React.useState(false);
 
@@ -61,4 +61,4 @@ export const useHovering = (ref, { enterDelay = 0, exitDelay = 0 } = {}) => {
   }, [hoverOp]);
 
   return hovering;
-};
+}
