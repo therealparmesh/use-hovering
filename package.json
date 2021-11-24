@@ -8,7 +8,7 @@
   "main": "dist",
   "types": "types.d.ts",
   "scripts": {
-    "build": "esbuild src/*.js --outdir=dist --minify --sourcemap",
+    "build": "esbuild src/*.js --outdir=dist --target=es6 --minify --sourcemap",
     "precommit": "pretty-quick --staged",
     "prepare": "pro-commit",
     "prepublishOnly": "npm run build",
