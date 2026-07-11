@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export function useHovering(ref, { enterDelay = 0, exitDelay = 0 } = {}) {
   const op = React.useRef(null);
@@ -43,20 +43,22 @@ export function useHovering(ref, { enterDelay = 0, exitDelay = 0 } = {}) {
       }
     };
 
-    node.addEventListener('mouseenter', on);
-    node.addEventListener('mouseleave', off);
-    node.addEventListener('mousemove', on);
-    node.addEventListener('focus', on);
-    node.addEventListener('blur', off);
-    document.addEventListener('mousemove', outsideOff);
+    node.addEventListener("mouseenter", on);
+    node.addEventListener("mouseleave", off);
+    node.addEventListener("mousemove", on);
+    node.addEventListener("focus", on);
+    node.addEventListener("blur", off);
+    document.addEventListener("mousemove", outsideOff);
 
     return () => {
-      node.removeEventListener('mouseenter', on);
-      node.removeEventListener('mouseleave', off);
-      node.removeEventListener('mousemove', on);
-      node.removeEventListener('focus', on);
-      node.removeEventListener('blur', off);
-      document.removeEventListener('mousemove', outsideOff);
+      clearTimeout(op.current);
+      op.current = null;
+      node.removeEventListener("mouseenter", on);
+      node.removeEventListener("mouseleave", off);
+      node.removeEventListener("mousemove", on);
+      node.removeEventListener("focus", on);
+      node.removeEventListener("blur", off);
+      document.removeEventListener("mousemove", outsideOff);
     };
   }, [hoverOp]);
 
