@@ -1,7 +1,7 @@
 {
   "name": "use-hovering",
   "version": "0.5.0",
-  "description": "Simple, accessible React hook for tracking hover state.",
+  "description": "Track whether a React element is hovered or focused, with optional enter and exit delays and no runtime dependencies.",
   "license": "MIT",
   "author": "Parmesh Krishen",
   "repository": "github:therealparmesh/use-hovering",
