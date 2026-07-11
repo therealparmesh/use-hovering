@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.2](https://github.com/therealparmesh/use-hovering/compare/v0.5.1...v0.5.2) (2026-07-11)
+
+### Bug Fixes
+
+- remove side effects metadata ([7d88cf6](https://github.com/therealparmesh/use-hovering/commit/7d88cf63f933162733fcdcf830cefeba9bbd201f))
+
 ### [0.5.1](https://github.com/therealparmesh/use-hovering/compare/v0.5.0...v0.5.1) (2026-07-11)
 
 ### Bug Fixes

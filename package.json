@@ -1,6 +1,6 @@
 {
   "name": "use-hovering",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Track whether a React element is hovered or focused, with optional enter and exit delays and no runtime dependencies.",
   "license": "MIT",
   "author": "Parmesh Krishen",
