@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/therealparmesh/use-hovering/compare/v0.4.4...v0.5.0) (2026-07-11)
+
+### ⚠ BREAKING CHANGES
+
+- the package is now distributed as ESM only.
+
+### Bug Fixes
+
+- improve hovering behavior and declarations ([f67c690](https://github.com/therealparmesh/use-hovering/commit/f67c6904c4fe7403ed661aa8aa3575b9016bf66c))
+
+- migrate package tooling to Bun ([0adb282](https://github.com/therealparmesh/use-hovering/commit/0adb28278b167e765e2b6214fb42147391d06577))
+
 ### [0.4.4](https://github.com/therealparmesh/use-hovering/compare/v0.4.3...v0.4.4) (2021-11-24)
 
 ### [0.4.3](https://github.com/therealparmesh/use-hovering/compare/v0.4.2...v0.4.3) (2021-11-24)
